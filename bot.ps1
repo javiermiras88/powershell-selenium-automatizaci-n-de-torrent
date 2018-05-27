@@ -1,8 +1,19 @@
 ﻿clear-host
 
+###ejecutamos el script remotamente###
+
+###invoke-command -computername 192.168.1.223 -ScriptBlock {
+
+
+
+
 #añadimos la libreria selenium
 
-Add-Type -Path "C:\Users\ortiga\Desktop\script\WebDriver.dll"
+$u =  whoami
+
+$usuario = $u.split("\")[1]
+
+Add-Type -Path "C:\Users\$usuario\Desktop\script\WebDriver.dll"
 
 
 #seleccionamos la ruta de la aplicacion que nos va a levantar google crome especifico de selenium
@@ -12,7 +23,7 @@ $env:PATH += ";N:\selenium"
 
 
 
-$controlador =  New-Object -TypeName "OpenQA.Selenium.Chrome.ChromeDriver"
+$controlador =  New-Object -TypeName "OpenQA.Selenium.Firefox.FirefoxDriver"
 
 $controlador.Manage().Window.Maximize();
 
@@ -39,19 +50,44 @@ $controlador.SwitchTo().Window($controlador.WindowHandles[0])
 $controlador.FindElementByLinkText("aquí").click()
 
 
-Clear-Host
-sleep 3
+cls
+sleep 2
 
-Set-Location C:\Users\ortiga\Downloads
+
+######ACEPTAR EL CUADRO DE DIALOGO#####
+
+[System.Windows.Forms.SendKeys]::SendWait("{DOWN}")
+
+sleep 1
+
+[System.Windows.Forms.SendKeys]::SendWait("{ENTER}")
+
+
+
+
+######NOS TRAE EL ARCHIVO AL ESCRITORIO#####
+
+Set-Location C:\Users\$usuario\Downloads
 
 $pelicula = ls | Sort-Object
 
-Move-Item  -Path $pelicula[0]  -Destination C:\Users\ortiga\Desktop  -Force
 
+Move-Item  -Path $pelicula[0]  -Destination C:\Users\$usuario\Desktop  -Force
+
+
+######SELECCIONAMOS ARCHIVO Y LO EJECUTAMOS########
+
+
+Invoke-Item C:\Users\$usuario\Desktop\$pelicula
+
+[System.Windows.Forms.SendKeys]::SendWait("{ENTER}{ENTER}")
+
+sleep 10
+
+Remove-Item C:\Users\$usuario\Desktop\$pelicula
 
 
 $controlador.quit()
 
 
-
-
+#}
