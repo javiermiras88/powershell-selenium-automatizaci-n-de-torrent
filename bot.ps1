@@ -2,7 +2,7 @@
 
 ###ejecutamos el script remotamente###
 
-###invoke-command -computername 192.168.1.223 -ScriptBlock {
+invoke-command -computername 192.168.1.223 -ScriptBlock {
 
 
 
@@ -90,4 +90,7 @@ Remove-Item C:\Users\$usuario\Desktop\$pelicula
 $controlador.quit()
 
 
-#}
+###fin del script
+
+
+} -credential administrator
