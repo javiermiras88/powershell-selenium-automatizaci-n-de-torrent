@@ -1,10 +1,9 @@
 ﻿clear-host
 
-###ejecutamos el script remotamente###
 
-invoke-command -computername 192.168.1.223 -ScriptBlock {
+#añadimos la libreria de control de teclado
 
-
+Add-Type -AssemblyName System.Windows.Forms
 
 
 #añadimos la libreria selenium
@@ -14,6 +13,8 @@ $u =  whoami
 $usuario = $u.split("\")[1]
 
 Add-Type -Path "C:\Users\$usuario\Desktop\script\WebDriver.dll"
+
+
 
 
 #seleccionamos la ruta de la aplicacion que nos va a levantar google crome especifico de selenium
@@ -50,8 +51,7 @@ $controlador.SwitchTo().Window($controlador.WindowHandles[0])
 $controlador.FindElementByLinkText("aquí").click()
 
 
-cls
-sleep 2
+sleep 1
 
 
 ######ACEPTAR EL CUADRO DE DIALOGO#####
@@ -62,12 +62,13 @@ sleep 1
 
 [System.Windows.Forms.SendKeys]::SendWait("{ENTER}")
 
+sleep 4
 
-
+$controlador.quit()
 
 ######NOS TRAE EL ARCHIVO AL ESCRITORIO#####
 
-Set-Location C:\Users\$usuario\Downloads
+cd C:\Users\$usuario\Downloads
 
 $pelicula = ls | Sort-Object
 
@@ -77,20 +78,27 @@ Move-Item  -Path $pelicula[0]  -Destination C:\Users\$usuario\Desktop  -Force
 
 ######SELECCIONAMOS ARCHIVO Y LO EJECUTAMOS########
 
+sleep 2
 
 Invoke-Item C:\Users\$usuario\Desktop\$pelicula
 
 [System.Windows.Forms.SendKeys]::SendWait("{ENTER}{ENTER}")
 
+sleep 5
+
+[System.Windows.Forms.SendKeys]::SendWait("{ENTER}{ENTER}")
+
 sleep 10
+
+
 
 Remove-Item C:\Users\$usuario\Desktop\$pelicula
 
 
-$controlador.quit()
+
+
+write-host "completado"
 
 
 ###fin del script
 
-
-} -credential administrator
