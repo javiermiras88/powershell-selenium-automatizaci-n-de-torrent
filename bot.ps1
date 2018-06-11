@@ -1,7 +1,7 @@
 ﻿clear-host
 
 
-#añadimos la libreria de control de teclado
+#añadimos la libreria de control de modales
 
 Add-Type -AssemblyName System.Windows.Forms
 
