@@ -88,7 +88,7 @@ sleep 5
 
 [System.Windows.Forms.SendKeys]::SendWait("{ENTER}{ENTER}")
 
-sleep 10
+sleep 6
 
 
 
