@@ -8,19 +8,18 @@ Add-Type -AssemblyName System.Windows.Forms
 
 #añadimos la libreria selenium
 
-$u =  whoami
 
-$usuario = $u.split("\")[1]
+$usuario = $env:USERNAME
 
 Add-Type -Path "C:\Users\$usuario\Desktop\script\WebDriver.dll"
 
 
 
 
-#seleccionamos la ruta de la aplicacion que nos va a levantar google crome especifico de selenium
+#agregamos una nueva variable de entorno
 
 
-$env:PATH += ";N:\selenium"
+$env:PATH += ";C:\Users\$usuario\Desktop\script\"
 
 
 
