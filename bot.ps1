@@ -36,6 +36,10 @@ $controlador.Navigate().GoToUrl("http://www.mejortorrent.com/torrents-de-pelicul
 
 $controlador.FindElementByXPath("/html/body/table/tbody/tr[3]/td/table/tbody/tr/td[2]/table/tbody/tr/td/table[3]/tbody/tr[3]/td/table/tbody/tr/td/div/center/a[1]").click()
 
+
+
+$controlador.SwitchTo().Window($controlador.WindowHandles[1]).close()
+
 $controlador.SwitchTo().Window($controlador.WindowHandles[0])
 
 
@@ -43,7 +47,7 @@ $controlador.SwitchTo().Window($controlador.WindowHandles[0])
 
 $controlador.FindElementByLinkText("Descargar").click()
 
-
+$controlador.SwitchTo().Window($controlador.WindowHandles[1]).close()
 
 $controlador.SwitchTo().Window($controlador.WindowHandles[0])
 
