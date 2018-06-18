@@ -1,4 +1,4 @@
-﻿clear-host
+clear-host
 
 
 #añadimos la libreria de control de modales
@@ -34,28 +34,45 @@ $controlador.Navigate().GoToUrl("http://www.mejortorrent.com/torrents-de-pelicul
 
 
 
-$controlador.FindElementByXPath("/html/body/table/tbody/tr[3]/td/table/tbody/tr/td[2]/table/tbody/tr/td/table[3]/tbody/tr[3]/td/table/tbody/tr/td/div/center/a[1]").click()
+$controlador.FindElementByXPath("/html/body/table/tbody/tr[3]/td/table/tbody/tr/td[2]/table/tbody/tr/td/table[2]/tbody/tr[3]/td/table/tbody/tr/td/div/center/a[2]/img").click()
+
+
+$pantalla = $controlador.WindowHandles.count
 
 
 
-$controlador.SwitchTo().Window($controlador.WindowHandles[1]).close()
-
-$controlador.SwitchTo().Window($controlador.WindowHandles[0])
-
-
-
-
-$controlador.FindElementByLinkText("Descargar").click()
+if($pantalla -eq 2){
 
 $controlador.SwitchTo().Window($controlador.WindowHandles[1]).close()
 
-$controlador.SwitchTo().Window($controlador.WindowHandles[0])
+}
+
+$controlador.SwitchTo().Window($controlador.WindowHandles[0]) | out-null
+
+
+
+$controlador.FindElementByLinkText("Descargar").Click()
+
+
+sleep 4
+
+
+
+
+
+if($pantalla -eq 2){
+
+$controlador.SwitchTo().Window($controlador.WindowHandles[1]).close()
+
+}
+
+$controlador.SwitchTo().Window($controlador.WindowHandles[0]) | out-null
+
 
 $controlador.FindElementByLinkText("aquí").click()
 
 
 sleep 1
-
 
 ######ACEPTAR EL CUADRO DE DIALOGO#####
 
@@ -66,6 +83,7 @@ sleep 1
 [System.Windows.Forms.SendKeys]::SendWait("{ENTER}")
 
 sleep 4
+
 
 $controlador.quit()
 
@@ -87,21 +105,23 @@ Invoke-Item C:\Users\$usuario\Desktop\$pelicula
 
 [System.Windows.Forms.SendKeys]::SendWait("{ENTER}{ENTER}")
 
-sleep 5
+sleep 3
+
+
 
 [System.Windows.Forms.SendKeys]::SendWait("{ENTER}{ENTER}")
 
-sleep 6
+sleep 4
 
-
+[System.Windows.Forms.SendKeys]::SendWait("{ESC}")
 
 Remove-Item C:\Users\$usuario\Desktop\$pelicula
 
 
+cls
 
-
-write-host "completado"
-
+write-host "------------------------------"
+write-host -FOREGROUND Yellow "Completado"
+write-host "------------------------------"
 
 ###fin del script
-
