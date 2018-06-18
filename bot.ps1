@@ -45,17 +45,21 @@ if($pantalla -eq 2){
 
 $controlador.SwitchTo().Window($controlador.WindowHandles[1]).close()
 
+
+
 }
+
+
 
 $controlador.SwitchTo().Window($controlador.WindowHandles[0]) | out-null
 
 
+sleep 3
+
+
+
 
 $controlador.FindElementByLinkText("Descargar").Click()
-
-
-sleep 4
-
 
 
 
@@ -64,9 +68,15 @@ if($pantalla -eq 2){
 
 $controlador.SwitchTo().Window($controlador.WindowHandles[1]).close()
 
+
+
 }
 
 $controlador.SwitchTo().Window($controlador.WindowHandles[0]) | out-null
+
+
+sleep 4
+
 
 
 $controlador.FindElementByLinkText("aquí").click()
@@ -78,11 +88,12 @@ sleep 1
 
 [System.Windows.Forms.SendKeys]::SendWait("{DOWN}")
 
+
 sleep 1
 
 [System.Windows.Forms.SendKeys]::SendWait("{ENTER}")
 
-sleep 4
+sleep 3
 
 
 $controlador.quit()
@@ -106,7 +117,6 @@ Invoke-Item C:\Users\$usuario\Desktop\$pelicula
 [System.Windows.Forms.SendKeys]::SendWait("{ENTER}{ENTER}")
 
 sleep 3
-
 
 
 [System.Windows.Forms.SendKeys]::SendWait("{ENTER}{ENTER}")
