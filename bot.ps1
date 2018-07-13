@@ -9,17 +9,13 @@ Add-Type -AssemblyName System.Windows.Forms
 #añadimos la libreria selenium
 
 
-$usuario = $env:USERNAME
-
-Add-Type -Path "C:\Users\$usuario\Desktop\script\WebDriver.dll"
-
-
+Add-Type -Path "$PSScriptRoot\WebDriver.dll"
 
 
 #agregamos una nueva variable de entorno
 
 
-$env:PATH += ";C:\Users\$usuario\Desktop\script\"
+$env:PATH += ";$HOME\Desktop\script\"
 
 
 
